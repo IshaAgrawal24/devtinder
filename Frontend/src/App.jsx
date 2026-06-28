@@ -1,15 +1,8 @@
-import Navbar from "./components/nav/Navbar";
+
+import Approuter from "./routes/Approuter";
 
 function App() {
-
-  return (
-    <>
-      <Navbar />
-      <h1 class="text-xl underline ">
-        Hello world!
-      </h1>
-    </>
-  )
+  return <Approuter />
 }
 
 export default App
