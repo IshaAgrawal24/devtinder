@@ -1,2 +1,16 @@
 # devtinder
 The Application where developers can talk to each other.
+
+- Create a Vite + React application setup
+- Remove unnecessary codes
+- Install Tailwind CSS 
+- Install Daisy UI
+- Add Navigation bar
+- Install react-router-dom
+- Add Basic routing
+- Create a footer
+
+- Create a Login Page
+- Install axios
+- Install CORS - install cors in backend => add middleware woth configurations: (origin, credentials: true)
+- Whenever we are making an API call we need to pass on axios => (withCredentials: true)
