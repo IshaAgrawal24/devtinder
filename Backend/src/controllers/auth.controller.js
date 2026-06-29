@@ -81,7 +81,7 @@ const login = async (req, res) => {
             return res.status(401).json({
                 status: false,
                 status_code: 401,
-                return_message: "Invalid Credentials",
+                return_message: "User is not valid.",
             });
 
         }
@@ -104,7 +104,12 @@ const login = async (req, res) => {
         res.status(201).json({
             status: true,
             return_message: "User logged in successfully.",
-            user: userData
+            user: {
+                fistName: userData.firstName,
+                lastName: userData.lastName,
+                email: userData.email,
+                isPremium: userData.isPremium
+            }
         })
 
     } catch (error) {
