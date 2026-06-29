@@ -11,4 +11,12 @@ const validateSignUpData = (req) => {
         return "Password is not strong enough."
 }
 
-module.exports = {validateSignUpData}
+const validateLoginData = (req) => {
+    const {email, password} = req.body;
+
+    if(!validator.isEmail(email) || !validator.isStrongPassword(password)) {
+        return "Credentials are not valid."
+    }
+}
+
+module.exports = {validateSignUpData, validateLoginData}

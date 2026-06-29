@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
 
-const { validateSignUpData } = require("../utils/validation");
+const { validateSignUpData, validateLoginData } = require("../utils/validation");
 
 const userModel = require('../models/user.model');
 
 const signup = async (req, res) => {
     try {
-        const {email, firstName, lastName, password} = req.body;
+        const { email, firstName, lastName, password } = req.body;
         const isValidationMessage = await validateSignUpData(req);
 
         if (isValidationMessage)
@@ -18,7 +18,7 @@ const signup = async (req, res) => {
             })
 
         const isUserAlreadyExist = await userModel.findOne({
-           email
+            email
         })
 
         if (isUserAlreadyExist) {
@@ -63,7 +63,58 @@ const signup = async (req, res) => {
 }
 
 const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
 
+        const isValidationMessage = await validateLoginData(req);
+        if (isValidationMessage) {
+            return res.status(400).json({
+                status_code: 400,
+                error: {
+                    error_message: isValidationMessage
+                }
+            })
+        }
+
+        const userData = await userModel.findOne({ email });
+        if (!userData) {
+            return res.status(401).json({
+                status: false,
+                status_code: 401,
+                return_message: "Invalid Credentials",
+            });
+
+        }
+
+        const isPasswordMatch = await bcrypt.compare(password, userData.password);
+        if (!isPasswordMatch) {
+            return res.status(401).json({
+                status: false,
+                status_code: 401,
+                return_message: "Invalid Credentials",
+            });
+
+        }
+
+        const token = await userData.getJWT();
+        res.cookie("Token", token, {
+            expires: new Date(Date.now() + 8 * 3600000)
+        })
+
+        res.status(201).json({
+            status: true,
+            return_message: "User logged in successfully.",
+            user: userData
+        })
+
+    } catch (error) {
+        console.log("Login Controller Error:", error);
+        return res.status(500).json({
+            status: false,
+            status_code: 500,
+            return_message: "Internal Server Error",
+        });
+    }
 }
 
 const logout = async (req, res) => {
