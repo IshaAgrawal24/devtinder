@@ -16,4 +16,4 @@ The Application where developers can talk to each other.
 - Whenever we are making an API call we need to pass on axios => (withCredentials: true)
 
 - Install @reduxjs/toolkit + react-redux
-- 
+- configureStore => Provider => create Slice => add reducer to store => dispatch action
