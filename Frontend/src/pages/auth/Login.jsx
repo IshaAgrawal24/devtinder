@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../slice/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     email: "",
     password: ""
@@ -17,11 +20,11 @@ const Login = () => {
       {withCredentials: true}
     )
     if(res.status === 200) {
-      console.log("Response:", res)
+      dispatch(addUser(res.data.user))
       setData({
         email: "",
         password: ""
-  })
+      })
     }
   }
     return (
@@ -33,7 +36,7 @@ const Login = () => {
           <legend className="fieldset-legend">Email ID</legend>
           <input type="text" 
           className="input w-full" 
-          placeholder="Enter your email ID" 
+          placeholder="Enter your Email ID" 
           value={data.email} 
           onChange={(e) => {setData({...data, email: e.target.value})}}
           />
@@ -43,7 +46,7 @@ const Login = () => {
           <legend className="fieldset-legend">Password</legend>
           <input type="text" 
           className="input w-full" 
-          placeholder="Enter your password" 
+          placeholder="Enter your Password" 
           value={data.password} 
           onChange={(e) => {setData({...data, password: e.target.value})}}
           />

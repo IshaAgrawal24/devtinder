@@ -101,7 +101,7 @@ const login = async (req, res) => {
             expires: new Date(Date.now() + 8 * 3600000)
         })
 
-        res.status(201).json({
+        res.status(200).json({
             status: true,
             return_message: "User logged in successfully.",
             user: {
@@ -123,7 +123,16 @@ const login = async (req, res) => {
 }
 
 const logout = async (req, res) => {
-
+    try {
+        
+    } catch (error) {
+        console.log("Logout Controller Error:", error);
+        return res.status(500).json({
+            status: false,
+            status_code: 500,
+            return_message: "Internal Server Error"
+        })
+    }
 }
 
 module.exports = { signup, login, logout }

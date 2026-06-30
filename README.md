@@ -14,3 +14,6 @@ The Application where developers can talk to each other.
 - Install axios
 - Install CORS - install cors in backend => add middleware woth configurations: (origin, credentials: true)
 - Whenever we are making an API call we need to pass on axios => (withCredentials: true)
+
+- Install @reduxjs/toolkit + react-redux
+- 
