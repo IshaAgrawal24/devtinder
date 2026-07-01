@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import {useNavigate} from "react-router-dom";
 import { addUser } from "../../slice/userSlice";
+import { BASE_URL } from "../../utils/Constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const Login = () => {
 
   const handleLogin = async() => {
     const res = await axios.post(
-      "http://localhost:4000/api/auth/login", 
+      BASE_URL + "auth/login", 
       {
         email: data.email,
         password: data.password
