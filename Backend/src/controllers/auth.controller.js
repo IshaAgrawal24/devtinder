@@ -105,7 +105,7 @@ const login = async (req, res) => {
             status: true,
             return_message: "User logged in successfully.",
             user: {
-                fistName: userData.firstName,
+                firstName: userData.firstName,
                 lastName: userData.lastName,
                 email: userData.email,
                 isPremium: userData.isPremium

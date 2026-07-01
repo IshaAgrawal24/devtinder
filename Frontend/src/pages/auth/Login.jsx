@@ -1,10 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import {useNavigate} from "react-router-dom";
 import { addUser } from "../../slice/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     email: "",
     password: ""
@@ -25,6 +28,7 @@ const Login = () => {
         email: "",
         password: ""
       })
+      navigate("/");
     }
   }
     return (
@@ -35,7 +39,7 @@ const Login = () => {
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Email ID</legend>
           <input type="text" 
-          className="input w-full" 
+          className="input w-full outline-none" 
           placeholder="Enter your Email ID" 
           value={data.email} 
           onChange={(e) => {setData({...data, email: e.target.value})}}
@@ -45,7 +49,7 @@ const Login = () => {
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Password</legend>
           <input type="text" 
-          className="input w-full" 
+          className="input w-full outline-none" 
           placeholder="Enter your Password" 
           value={data.password} 
           onChange={(e) => {setData({...data, password: e.target.value})}}
@@ -53,7 +57,7 @@ const Login = () => {
         </fieldset>
 
         <div className="card-actions justify-center mt-8">
-          <button className="btn btn-primary w-full" onClick={handleLogin}>Login</button>
+          <button className="btn btn-primary w-full" onClick={handleLogin}>Log In</button>
         </div>
 
       </div>
