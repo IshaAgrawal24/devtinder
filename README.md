@@ -1,9 +1,10 @@
 # devtinder
+
 The Application where developers can talk to each other.
 
 - Create a Vite + React application setup
 - Remove unnecessary codes
-- Install Tailwind CSS 
+- Install Tailwind CSS
 - Install Daisy UI
 - Add Navigation bar
 - Install react-router-dom
@@ -20,4 +21,5 @@ The Application where developers can talk to each other.
 
 - When user logged in successfully, redirect to feed page
 
-
+- User cannot be able to access routes without login
+- If token is not present, redirect user to login page
