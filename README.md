@@ -23,3 +23,5 @@ The Application where developers can talk to each other.
 
 - User cannot be able to access routes without login
 - If token is not present, redirect user to login page
+
+- Create Logout
