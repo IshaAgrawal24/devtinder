@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../layout/nav/Navbar";
 import Footer from "../layout/Footer";
 import { useEffect } from "react";
@@ -10,6 +10,7 @@ import { addUser } from "../slice/userSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const fetchProfile = async () => {
     try {
@@ -18,6 +19,9 @@ const Home = () => {
       });
       dispatch(addUser(res.data.user));
     } catch (error) {
+      if (error.status === 401) {
+        navigate("/login");
+      }
       console.log("Error has occurred:", error);
     }
   };
